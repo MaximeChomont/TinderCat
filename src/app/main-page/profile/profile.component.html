@@ -1,3 +1,18 @@
 <div>
-  PROFILE PAGE
+  <h1>
+    PROFILE PAGE
+  </h1>
+
+  <div *ngIf="user">
+
+    <h2>{{ user.firstName }} Details</h2>
+    <div><span>id: </span>{{user.id}}</div>
+    <!--
+        <div>
+          <label>name:
+            <input [(ngModel)]="user.firstName" placeholder="name"/>
+          </label>
+        </div>
+    -->
+  </div>
 </div>
