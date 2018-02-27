@@ -3,7 +3,8 @@ export class Cat {
   name: string;
   race: string;
   age: number;
-  sex: string;
+  gender: string;
   description: string;
   picture: string;
+  idUser: number;
 }

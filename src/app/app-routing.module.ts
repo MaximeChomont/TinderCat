@@ -5,6 +5,7 @@ import { HomeComponent } from './home-page/home-page.component'
 import { LoginComponent } from './main-page/login/login.component'
 import { SignInComponent } from './main-page/signIn/signIn.component'
 import { AddCatComponent } from './main-page/addCat/addCat.component'
+import {AuthGuard} from "./_guards/auth.guards";
 
 
 const routes: Routes = [
@@ -12,7 +13,10 @@ const routes: Routes = [
   { path: "home", component: HomeComponent},
   { path: "login", component: LoginComponent},
   { path: "signIn", component: SignInComponent},
-  { path: "addCat", component: AddCatComponent},
+  { path: "addCat", component: AddCatComponent, canActivate: [AuthGuard]},
+
+  { path: "**", redirectTo: 'home'},
+
 ];
 
 @NgModule({

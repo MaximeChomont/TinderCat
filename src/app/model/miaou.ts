@@ -1,5 +1,6 @@
 export class Miaou {
   id: number;
-  idCatMiaou: number;
-  idCatMiaoued: number;
+  idCatM: number;
+  idCatW: number;
+  meow: boolean;
 }

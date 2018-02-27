@@ -2,6 +2,8 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../model/user'
 import {UserService} from "../../service/model-service/user.service";
+import {AlertService} from "../../service/alert.service";
+import {AuthenticationService} from "../../service/authentification.service";
 
 @Component({
   moduleId: module.id,
@@ -11,24 +13,34 @@ import {UserService} from "../../service/model-service/user.service";
 })
 
 export class LoginComponent implements OnInit{
-  @Input() user : User;
+
+  model: any = {};
+  loading = false;
+  returnUrl: string;
 
   constructor(
     private route : ActivatedRoute,
     private router: Router,
-    private userService: UserService
+    private alertService: AlertService,
+    private authenticationService: AuthenticationService
   ) {}
 
   ngOnInit() {
-    this.getUser();
+    // reset login status
+    this.authenticationService.logout();
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'addCat';
   }
 
-  private getUser(): void {
-    this.userService.getUser(1).subscribe(user => this.user = user);
+  login() {
+    this.loading = true;
+    if(this.authenticationService.login(this.model.email, this.model.password)) {
+      this.router.navigate([this.returnUrl]);
+    } else {
+      this.alertService.error("Impossible to login");
+      this.loading = false;
+    }
   }
 
-  private goToHome(){
-    let route = ['/home'];
-    this.router.navigate(route);
-  }
 }
