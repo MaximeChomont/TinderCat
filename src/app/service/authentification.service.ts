@@ -5,7 +5,8 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class AuthenticationService {
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient) { }
 
   login(username: string, password: string) {
    /* return this.http.post<any>('/api/authenticate', { username: username, password: password })
@@ -19,6 +20,7 @@ export class AuthenticationService {
         return user;
       });
       */
+
     localStorage.setItem('currentUser', '0');
     return true;
   }

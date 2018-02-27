@@ -1,7 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../../model/user'
-import {UserService} from "../../service/model-service/user.service";
 import {AlertService} from "../../service/alert.service";
 import {AuthenticationService} from "../../service/authentification.service";
 
@@ -30,15 +28,15 @@ export class LoginComponent implements OnInit{
     this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'addCat';
+    this.returnUrl = '/addCat';
   }
 
-  login() {
+  onSubmit()  {
     this.loading = true;
     if(this.authenticationService.login(this.model.email, this.model.password)) {
       this.router.navigate([this.returnUrl]);
     } else {
-      this.alertService.error("Impossible to login");
+      this.alertService.error("Impossible de se connecter");
       this.loading = false;
     }
   }
