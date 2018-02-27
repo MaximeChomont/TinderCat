@@ -1,0 +1,56 @@
+<!-- Header -->
+<header id="header">
+  <img src="../../assets/tindercat.png"/>
+  <nav class="right">
+    <a [routerLink]="['/home']" href="" class="button alt">Déconnexion</a>
+  </nav>
+</header>
+
+<section id="main" class="wrapper">
+  <div class="inner wrap-login100 u12">
+    <header class="align-center">
+      <h1>Ajouter votre chat</h1>
+    </header>
+    <form  action="#" >
+      <div class="row uniform">
+        <div class="myInput 6u 12u$(xsmall)">
+          <input type="text" name="name" id="name" value="" placeholder="Nom">
+        </div>
+        <div class="myInput 6u 12u$(xsmall)">
+          <input type="text" name="race" id="race" value="" placeholder="Race">
+        </div>
+        <div class="6u 12u$(xsmall)">
+          <select name="Sex" id="category">
+            <option value="">- Sexe -</option>
+            <option value="1">Mâle</option>
+            <option value="2">Femelle</option>
+          </select>
+        </div>
+        <div class="myInput 6u 12u$(xsmall)">
+          <input type="text" name="age" id="age" value="" placeholder="Age">
+        </div>
+        <div class="12u$ description">
+          <textarea name="description" id="description" placeholder="Description" rows="6"></textarea>
+        </div>
+        <div class="myInput 6u 12u$(xsmall)">
+          <input type="file" name="picture" id="picture" value="" placeholder="picture">
+        </div>
+        <div class="btnCenter 12u 12u$(xsmall)">
+          <input class="button special" type="submit" value="Ajouter">
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<!-- <div *ngIf="user">
+
+   <h2>{{ user.firstName }} Details</h2>
+   <div><span>id: </span>{{user.id}}</div>
+
+       <div>
+         <label>name:
+           <input [(ngModel)]="user.firstName" placeholder="name"/>
+         </label>
+       </div>
+ </div>
+   -->
