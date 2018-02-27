@@ -1,0 +1,23 @@
+h1{
+  color:#f6755e;
+}
+.wrap-login100 {
+  width: 600px;
+  border-radius: 10px;
+  border: 2px solid #f6755e;
+  position: relative;
+  padding: 2%;
+}
+
+.myInput{
+
+}
+
+.btnCenter
+{
+ margin-left: 6%;
+}
+
+.btnCenter input {
+  background-color: #f6755e;
+}

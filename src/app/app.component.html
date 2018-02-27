@@ -1,8 +1,20 @@
 <!--The whole content below can be removed with the new code.-->
-<a [routerLink]="['/home']" href="" style="text-decoration: none">
-  <h1>
-    GO TO HOME
-  </h1>
-</a>
+<!-- Header -->
+<header id="header">
+  <a href="index.html" class="logo"><img src="../../assets/tindercat.png"/> </a>
+  <nav class="right">
+    <a [routerLink]="['/login']" href="" class="button alt">Connexion</a>
+  </nav>
+</header>
 <router-outlet></router-outlet>
-
+<footer id="footer">
+  <div class="inner">
+    <h2>Pour l'amour des chats</h2>
+    <ul class="actions">
+      <li><span class="icon fa-envelope"></span> <a href="#">contact@tindercar.com</a></li>
+    </ul>
+  </div>
+  <div class="copyright">
+    © TinderCat 2018
+  </div>
+</footer>

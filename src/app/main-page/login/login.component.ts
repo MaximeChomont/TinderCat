@@ -5,12 +5,12 @@ import {UserService} from "../../service/model-service/user.service";
 
 @Component({
   moduleId: module.id,
-  selector: 'profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 
-export class ProfileComponent implements OnInit{
+export class LoginComponent implements OnInit{
   @Input() user : User;
 
   constructor(

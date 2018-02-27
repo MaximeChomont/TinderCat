@@ -1,10 +1,4 @@
-<!-- Header -->
-<header id="header">
-  <a href="index.html" class="logo"><img src="../../assets/tindercat.png"/> </a>
-  <nav class="right">
-    <a [routerLink]="['/profile']" href="" class="button alt">Connexion</a>
-  </nav>
-</header>
+
 
 
 <!-- Banner -->
@@ -13,7 +7,7 @@
     <h1>Vous recherchez</h1>
     <p>désésperement un compagnon pour votre chat de compagnie <br/>alors inscrivez son profil et commencez pour lui la recherche de l'âme soeur.</p>
     <ul class="actions">
-      <li><a href="#one" class="button scrolly">Inscrivez-vous</a></li>
+      <li><a [routerLink]="['/signIn']" href="" class="button scrolly">Inscrivez-vous</a></li>
     </ul>
   </div>
 </section>

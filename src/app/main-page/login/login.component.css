@@ -1,0 +1,20 @@
+
+.wrap-login100 {
+  width: 400px;
+  border-radius: 10px;
+  border: 2px solid #25a2c3;
+  position: relative;
+}
+
+.myInput{
+  width: 90%;
+  margin: 5%;
+  border: 1px solid #e6e6e6;
+}
+
+.btnCenter
+{
+  width: 60%;
+  margin-left: 28%;
+  margin-right: 20%;
+}
