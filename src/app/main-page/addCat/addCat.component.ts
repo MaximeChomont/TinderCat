@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {AuthenticationService} from "../../service/authentification.service";
 import { Cat } from '../../model/cat';
 import { CatService } from '../../service/model-service/cat.service';
+import {User} from '../../model/user';
 
 @Component({
   moduleId: module.id,
@@ -22,9 +23,11 @@ cat: Cat;
   ) {}
 
   ngOnInit() {
+    this.cat = new Cat();
   }
 
   onSubmit() {
+    this.cat.idUser = +localStorage.getItem('currentUser');
     this.catService.addCat(this.cat).subscribe(cat => this.cat = cat);
   }
 

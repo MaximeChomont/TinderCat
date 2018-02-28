@@ -41,7 +41,7 @@ export class MeowComponent implements OnInit, AfterViewChecked{
   }
 
   getCats(): void {
-    const idUser = 1;
+    const idUser = +localStorage.getItem('currentUser');
     while(this.cats.length == 0){}
       for(let cat of this.cats)
       {
