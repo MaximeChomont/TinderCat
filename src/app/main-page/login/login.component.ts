@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy,  } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {AlertService} from "../../service/alert.service";
 import {AuthenticationService} from "../../service/authentification.service";
@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit{
     // get return url from route parameters or default to '/'
     this.returnUrl = '/addCat';
   }
+
 
 
   onSubmit()  {

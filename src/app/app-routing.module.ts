@@ -6,13 +6,14 @@ import { LoginComponent } from './main-page/login/login.component'
 import { SignInComponent } from './main-page/signIn/signIn.component'
 import { AddCatComponent } from './main-page/addCat/addCat.component'
 import {AuthGuard} from "./_guards/auth.guards";
+import {AuthNonConnectedGuard} from "./_guards/authNonConnected.guads";
 
 
 const routes: Routes = [
   { path: "", pathMatch: 'full', redirectTo: 'home'},
-  { path: "home", component: HomeComponent, canActivate: [AuthGuard]},
-  { path: "login", component: LoginComponent},
-  { path: "signIn", component: SignInComponent},
+  { path: "home", component: HomeComponent, canActivate: [AuthNonConnectedGuard]},
+  { path: "login", component: LoginComponent, canActivate: [AuthNonConnectedGuard]},
+  { path: "signIn", component: SignInComponent, canActivate: [AuthNonConnectedGuard]},
   { path: "addCat", component: AddCatComponent, canActivate: [AuthGuard]},
 
   { path: "**", redirectTo: 'home'},

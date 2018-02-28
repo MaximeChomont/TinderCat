@@ -1,6 +1,6 @@
 <!-- Header -->
 <header id="header">
-  <a [routerLink]="['/home']" href="" class="logo"><img src="../../assets/tindercat.png"/> </a>
+  <a href="index.html" class="logo"><img src="../../assets/tindercat.png"/> </a>
   <nav class="right">
     <a [routerLink]="['/login']" href="" class="button alt">Connexion</a>
   </nav>
@@ -11,21 +11,21 @@
     <header class="align-center">
       <h1>Connexion</h1>
     </header>
-      <form  action="#" (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
-        <div class=" uniform">
-          <div class="myInput">
-            <input type="email" name="email" id="email" value="" placeholder="Email" [(ngModel)]="model.email" required pattern="email">
-          </div>
-          <div class="myInput">
-            <input type="password" name="password" id="password" value="" placeholder="Mot de passe" [(ngModel)]="model.password" required pattern="password">
-          </div>
-          <div class="btnCenter">
-              <input class="button special small" type="submit" value="Bienvenue">
-          </div>
+    <form  action="#" (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
+      <div class=" uniform">
+        <div class="myInput">
+          <input type="email" name="email" id="email" value="" placeholder="Email" [(ngModel)]="model.email" #email="ngModel" required pattern="">
         </div>
-      </form>
-    </div>
+        <div class="myInput">
+          <input type="password" name="password" id="password" value="" placeholder="Mot de passe" [(ngModel)]="model.password" #pwd="ngModel" required pattern="">
+        </div>
+        <div class="btnCenter">
+          <input class="button special small" type="submit" value="Bienvenue" [hidden]="email.invalid || email.required || email.pristine || pwd.required || pwd.pristine">
+        </div>
+      </div>
+    </form>
+  </div>
 </section>
-<a [routerLink]="['/meow']" href="" class="button alt">Connexion</a>
+<a [routerLink]="['/addCat']" href="" class="button alt">Connexion</a>
 
 

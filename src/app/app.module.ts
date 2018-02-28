@@ -20,6 +20,7 @@ import {LoginComponent} from "./main-page/login/login.component";
 import {HomeComponent} from "./home-page/home-page.component";
 import {SignInComponent} from "./main-page/signIn/signIn.component";
 import {AddCatComponent} from "./main-page/addCat/addCat.component";
+import {AuthNonConnectedGuard} from "./_guards/authNonConnected.guads";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {AddCatComponent} from "./main-page/addCat/addCat.component";
     MiaouService,
     AlertService,
     AuthGuard,
+    AuthNonConnectedGuard,
     AuthenticationService,
     MessageService,
     Configuration
