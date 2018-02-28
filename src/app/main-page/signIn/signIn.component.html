@@ -11,43 +11,55 @@
     <header class="align-center">
       <h1>Inscription</h1>
     </header>
-      <form  action="#" (ngSubmit)="onSubmit()" #signInForm="ngForm" novalidate>
-        <div class="row uniform">
+    <form  action="#" (ngSubmit)="onSubmit()" #signInForm="ngForm" novalidate>
+      <div class="row uniform">
 
-          <div class="myInput 6u 12u$(xsmall)">
-            <input type="text" name="lastName" id="lastName" value="" [(ngModel)]="user.name" placeholder="Nom" required>
-          </div>
-
-          <div class="myInput 6u 12u$(xsmall)">
-            <input type="text" name="firstName" id="firstName" value="" [(ngModel)]="user.firstName"placeholder="Prénom" required>
-          </div>
-          <div class="myInput 8u 12u$(xsmall)">
-            <input type="email" name="email" id="email" value="" [(ngModel)]="user.mail" placeholder="Email" required>
-          </div>
-          <div class="myInput 4u 12u$(xsmall)">
-            <input type="text" name="age" id="age" value="" [(ngModel)]="user.age" placeholder="Age" required>
-          </div>
-          <div class="myInput 6u 12u$(xsmall)">
-            <input type="password" name="password" id="password" value="" [(ngModel)]="user.password" placeholder="Mot de passe" required>
-          </div>
-          <div class="myInput 6u 12u$(xsmall)">
-            <input type="password" name="password2" id="password2" value="" [(ngModel)]="password2" placeholder="Confirmation du mot de passe" required>
-          </div>
-          <div class="myInput 8u 12u$(xsmall)">
-            <input type="text" name="adress" id="adress" value="" [(ngModel)]="user.address" placeholder="Adresse" required>
-          </div>
-          <div class="myInput 4u 12u$(xsmall)">
-            <input type="text" name="postal" id="postal" value="" [(ngModel)]="user.postalCode" placeholder="Code postale" required>
-          </div>
-          <div class="myInput 6u 12u$(xsmall)">
-            <input type="text" name="city" id="city" value="" [(ngModel)]="user.city" placeholder="Ville" required>
-          </div>
-          <div class="btnCenter 5u 12u$(xsmall)">
-              <input class="button special" type="submit" value="Bienvenue">
-          </div>
+        <div class="myInput 6u 12u$(xsmall)">
+          <input type="text" name="lastName" id="lastName" value="" [(ngModel)]="user.name" placeholder="Nom" #nameSign="ngModel" required>
         </div>
-      </form>
-    </div>
+
+        <div class="myInput 6u 12u$(xsmall)">
+          <input type="text" name="firstName" id="firstName" value="" [(ngModel)]="user.firstName"placeholder="Prénom" #firstNameSign="ngModel" required >
+        </div>
+        <div class="myInput 8u 12u$(xsmall)">
+          <input type="email" name="email" id="email" value="" [(ngModel)]="user.mail" placeholder="Email" #emailSign="ngModel" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        </div>
+        <div class="myInput 4u 12u$(xsmall)">
+          <input type="text" name="age" id="age" value="" [(ngModel)]="user.age" placeholder="Age" #ageSign="ngModel" required pattern="^[0-9]{1,3}$">
+        </div>
+        <div class="myInput 6u 12u$(xsmall)">
+          <input type="password" name="password" id="password" value="" [(ngModel)]="user.password" placeholder="Mot de passe" #pwdSign="ngModel" required>
+        </div>
+        <div class="myInput 6u 12u$(xsmall)">
+          <input type="password" name="password2" id="password2" value="" [(ngModel)]="password2" placeholder="Confirmation du mot de passe" #password2Sign="ngModel" required>
+        </div>
+        <div class="myInput 8u 12u$(xsmall)">
+          <input type="text" name="adress" id="adress" value="" [(ngModel)]="user.address" placeholder="Adresse" #adressSign="ngModel" required>
+        </div>
+        <div class="myInput 4u 12u$(xsmall)">
+          <input type="text" name="postal" id="postal" value="" [(ngModel)]="user.postalCode" placeholder="Code postale" #postalSign="ngModel" required  pattern="^[0-9]{1,6}$">
+        </div>
+        <div class="myInput 6u 12u$(xsmall)">
+          <input type="text" name="city" id="city" value="" [(ngModel)]="user.city" placeholder="Ville" #citySign="ngModel" required>
+        </div>
+        <div class="btnCenter 5u 12u$(xsmall)">
+          <input class="button special"
+                 type="submit"
+                 value="Bienvenue"
+          [disabled]="nameSign.invalid || nameSign.required || nameSign.pristine ||
+                     firstNameSign.invalid || firstNameSign.required || firstNameSign.pristine ||
+                     emailSign.invalid || emailSign.required || emailSign.pristine ||
+                     ageSign.invalid || ageSign.required || ageSign.pristine ||
+                     pwdSign.invalid || pwdSign.required || pwdSign.pristine ||
+                     password2Sign.invalid || password2Sign.required || password2Sign.pristine ||
+                     adressSign.invalid || adressSign.required || adressSign.pristine ||
+                     postalSign.invalid || postalSign.required || postalSign.pristine ||
+                     citySign.invalid || citySign.required || citySign.pristine ">
+
+        </div>
+      </div>
+    </form>
+  </div>
 </section>
 <!-- <div *ngIf="user">
 

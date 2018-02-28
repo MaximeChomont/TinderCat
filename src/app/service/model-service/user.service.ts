@@ -79,7 +79,16 @@ export class UserService {
   /** POST: add a new user to the server */
   addUser (user: User): Observable<User> {
     this.alertService.success(`Fonction d'ajout ${user.firstName}`);
-    return this.http.post<User>(this.userUrl, user, httpOptions).pipe(
+    return this.http.post<User>(this.userUrl,{
+      name: user.name,
+      firstName: user.firstName,
+      age: user.age,
+      address: user.address,
+      postalCode: user.postalCode,
+      city: user.city,
+      password: user.password,
+      mail: user.mail
+    }, httpOptions).pipe(
       tap((user: User) => this.alertService.success(`added user w/ id=${user.id}`)),
       catchError(this.handleError<User>('addUser'))
     );

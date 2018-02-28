@@ -14,13 +14,13 @@
     <form  action="#" (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
       <div class=" uniform">
         <div class="myInput">
-          <input type="email" name="email" id="email" value="" placeholder="Email" [(ngModel)]="model.email" #email="ngModel" required pattern="">
+          <input type="email" name="email" id="email" value="" placeholder="Email" [(ngModel)]="model.email" #email="ngModel" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
         </div>
         <div class="myInput">
           <input type="password" name="password" id="password" value="" placeholder="Mot de passe" [(ngModel)]="model.password" #pwd="ngModel" required pattern="">
         </div>
-        <div class="btnCenter">
-          <input class="button special small" type="submit" value="Bienvenue" [hidden]="email.invalid || email.required || email.pristine || pwd.required || pwd.pristine">
+        <div  class="btnCenter">
+          <input class="button special small" type="submit" value="Bienvenue" [disabled]="email.invalid || email.required || email.pristine || pwd.invalid || pwd.required || pwd.pristine" [hidden]="email.invalid || email.required || email.pristine || pwd.invalid || pwd.required || pwd.pristine">
         </div>
       </div>
     </form>
