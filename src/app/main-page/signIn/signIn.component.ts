@@ -29,6 +29,6 @@ export class SignInComponent implements OnInit{
 
   onSubmit() {
       this.alertService.error("ajout utilisateur");
-      this.userService.addUser(this.user);
+      this.userService.addUser(this.user).subscribe(user => this.user = user);
   }
 }
