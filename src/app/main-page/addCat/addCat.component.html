@@ -11,13 +11,13 @@
     <header class="align-center">
       <h1>Ajouter votre chat</h1>
     </header>
-    <form   action="#" (ngSubmit)="onSubmit()" #signInForm="ngForm" novalidate >
+    <form   action="#" (ngSubmit)="onSubmit()" #signInForm="ngForm" >
       <div class="row uniform">
         <div class="myInput 6u 12u$(xsmall)">
           <input type="text" name="name" id="name" value="" [(ngModel)]="cat.name" placeholder="Nom">
         </div>
         <div class="myInput 6u 12u$(xsmall)">
-          <input type="text" name="race" id="race" value="" [(ngModel)]="cat.name" placeholder="Race">
+          <input type="text" name="race" id="race" value="" [(ngModel)]="cat.race" placeholder="Race">
         </div>
         <div class="6u 12u$(xsmall)">
           <select name="Sex" id="category" [(ngModel)]="cat.gender">

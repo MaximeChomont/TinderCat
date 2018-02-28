@@ -91,7 +91,7 @@ export class UserService {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
     return this.http.post<User>(this.userUrl, body.toString(), options).pipe(
-      tap((user: User) => this.alertService.success(`added user w/ id=${user.name}`)),
+      tap((user: User) => this.log(`added user w/ id=${user.name}`)),
       catchError(this.handleError<User>('addUser'))
     );
   }

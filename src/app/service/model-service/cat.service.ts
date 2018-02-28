@@ -76,7 +76,17 @@ export class CatService {
 
   /** POST: add a new cat to the server */
   addCat (cat: Cat): Observable<Cat> {
-    return this.http.post<Cat>(this.catUrl, cat, httpOptions).pipe(
+    let body = new URLSearchParams();
+    body.set('name', cat.name);
+    body.set('race', cat.race);
+    body.set('age', cat.age.toString());
+    body.set('gender', cat.gender);
+    body.set('description', cat.description);
+    body.set('idUser', cat.idUser.toString());
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    return this.http.post<Cat>(this.catUrl,  body.toString(), options).pipe(
       tap((cat: Cat) => this.log(`added cat w/ id=${cat.id}`)),
       catchError(this.handleError<Cat>('addCat'))
     );
