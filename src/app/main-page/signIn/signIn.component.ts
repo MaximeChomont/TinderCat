@@ -28,7 +28,16 @@ export class SignInComponent implements OnInit{
 
 
   onSubmit() {
-      this.alertService.error("ajout utilisateur");
+
       this.userService.addUser(this.user).subscribe(user => this.user = user);
+      if(this.user){
+        this.alertService.success("Vous êtes inscrit");
+        let route = ['/home'];
+        this.router.navigate(route);
+      }
+      else {
+        this.alertService.error( "Problème lors de l'inscription");
+      }
+
   }
 }
