@@ -21,6 +21,7 @@ import {HomeComponent} from "./home-page/home-page.component";
 import {SignInComponent} from "./main-page/signIn/signIn.component";
 import {AddCatComponent} from "./main-page/addCat/addCat.component";
 import {AuthNonConnectedGuard} from "./_guards/authNonConnected.guads";
+import {MeowComponent} from './main-page/meow/meow.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {AuthNonConnectedGuard} from "./_guards/authNonConnected.guads";
     LoginComponent,
     HomeComponent,
     SignInComponent,
-    AddCatComponent
+    AddCatComponent,
+    MeowComponent
   ],
   imports: [
     BrowserModule,

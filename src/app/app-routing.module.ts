@@ -5,6 +5,7 @@ import { HomeComponent } from './home-page/home-page.component'
 import { LoginComponent } from './main-page/login/login.component'
 import { SignInComponent } from './main-page/signIn/signIn.component'
 import { AddCatComponent } from './main-page/addCat/addCat.component'
+import { MeowComponent } from './main-page/meow/meow.component'
 import {AuthGuard} from "./_guards/auth.guards";
 import {AuthNonConnectedGuard} from "./_guards/authNonConnected.guads";
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent, canActivate: [AuthNonConnectedGuard]},
   { path: "signIn", component: SignInComponent, canActivate: [AuthNonConnectedGuard]},
   { path: "addCat", component: AddCatComponent, canActivate: [AuthGuard]},
+  { path: "meow", component: MeowComponent, canActivate: [AuthGuard]},
 
   { path: "**", redirectTo: 'home'},
 
@@ -31,4 +33,5 @@ export const routableComponents = [
   LoginComponent,
   SignInComponent,
   AddCatComponent,
+  MeowComponent,
 ]

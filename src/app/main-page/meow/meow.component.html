@@ -11,10 +11,13 @@
     <ul class="cats">
       <li *ngFor="let cat of cats">
         <a ng-click="$getCatsNoMeow">
-          {{cat.name}}
+          {{cat.name}} {{cat.idUser}}
         </a>
         <button class="delete" title="delete cat"
                 (click)="delete(cat)">x</button>
+      </li>
+      <li>
+        <a [routerLink]="['/addCat']" href="" class="button alt">Ajouter</a>
       </li>
     </ul>
   </div>

@@ -5,6 +5,7 @@ import { CatService } from '../../service/model-service/cat.service';
 import { Miaou } from '../../model/miaou';
 import { MiaouService } from '../../service/model-service/miaou.service';
 import {forEach} from '@angular/router/src/utils/collection';
+import {AlertService} from '../../service/alert.service';
 
 @Component({
   moduleId: module.id,
@@ -21,19 +22,26 @@ export class MeowComponent implements OnInit{
   constructor(
     private route : ActivatedRoute,
     private router: Router,
-    private catService: CatService,
     private miaouService: MiaouService,
-  ) {}
+    private alertService: AlertService,
+    private catService: CatService) {
+      catService.getCats().subscribe(cats => this.cats = cats);
+  }
 
   ngOnInit() {
     this.getCats()
   }
 
   getCats(): void {
-    this.catService.getCats()
-      .subscribe(cats => this.cats = cats);
     const idUser = 1;
-    this.cats.filter(c => c.idUser !== idUser );
+    for(let cat of this.cats)
+    {
+      this.alertService.success("Vous êtes connecté");
+      if(cat.idUser == idUser)
+      {
+        this.cats = this.cats.filter(c => c !== cat );
+      }
+    }
   }
 
   getCatsNoMeow(): void {
