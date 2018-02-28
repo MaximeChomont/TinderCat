@@ -11,6 +11,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { User } from '../../model/user';
 import { MessageService } from './message.service';
 import {Configuration} from "../../app.constants";
+import {AlertService} from "../alert.service";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,7 +25,8 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
-    private configuration: Configuration) {
+    private configuration: Configuration,
+    private alertService: AlertService) {
     this.userUrl = this.configuration.ServerWithApiUrl+"users";
   }
 
@@ -76,8 +78,9 @@ export class UserService {
 
   /** POST: add a new user to the server */
   addUser (user: User): Observable<User> {
+    this.alertService.success(`Fonction d'ajout ${user.firstName}`);
     return this.http.post<User>(this.userUrl, user, httpOptions).pipe(
-      tap((user: User) => this.log(`added user w/ id=${user.id}`)),
+      tap((user: User) => this.alertService.success(`added user w/ id=${user.id}`)),
       catchError(this.handleError<User>('addUser'))
     );
   }
@@ -110,6 +113,8 @@ export class UserService {
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
+
+      this.alertService.error(error);
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 

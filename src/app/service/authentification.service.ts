@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
+import {UserService} from "./model-service/user.service";
+import {User} from "../model/user";
+
 
 @Injectable()
 export class AuthenticationService {
-  constructor(
-    private http: HttpClient) { }
+  users : User[];
 
-  login(username: string, password: string) {
+  constructor(
+    private http: HttpClient,
+    private userService: UserService) {
+      userService.getUsers().subscribe(users => this.users = users);
+  }
+
+  login(email: string, password: string) {
    /* return this.http.post<any>('/api/authenticate', { username: username, password: password })
       .map(user => {
         // login successful if there's a jwt token in the response
@@ -20,9 +27,16 @@ export class AuthenticationService {
         return user;
       });
       */
+    let returnValue = false;
+   for( let user of this.users) {
+      if(user.mail == email && user.password == password ) {
+        localStorage.setItem('currentUser', user.id.toString());
 
-    localStorage.setItem('currentUser', '0');
-    return true;
+        returnValue = true;
+      }
+    }
+
+    return returnValue;
   }
 
   logout() {

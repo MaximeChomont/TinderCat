@@ -8,4 +8,5 @@ export class User {
   city: string;
   password: string;
   picture: string;
+  mail: string;
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {AlertService} from "../../service/alert.service";
 import {AuthenticationService} from "../../service/authentification.service";
 
+
 @Component({
   moduleId: module.id,
   selector: 'login',
@@ -31,14 +32,16 @@ export class LoginComponent implements OnInit{
     this.returnUrl = '/addCat';
   }
 
+
   onSubmit()  {
     this.loading = true;
     if(this.authenticationService.login(this.model.email, this.model.password)) {
       this.router.navigate([this.returnUrl]);
+      this.alertService.success("Vous êtes connecté");
+
     } else {
       this.alertService.error("Impossible de se connecter");
       this.loading = false;
     }
   }
-
 }

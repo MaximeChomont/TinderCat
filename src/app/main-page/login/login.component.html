@@ -14,10 +14,10 @@
       <form  action="#" (ngSubmit)="onSubmit()" #loginForm="ngForm" novalidate>
         <div class=" uniform">
           <div class="myInput">
-            <input type="email" name="email" id="email" value="" placeholder="Email" [(ngModel)]="model.email" name="email" required>
+            <input type="email" name="email" id="email" value="" placeholder="Email" [(ngModel)]="model.email" required pattern="email">
           </div>
           <div class="myInput">
-            <input type="password" name="password" id="password" value="" placeholder="Mot de passe"  required>
+            <input type="password" name="password" id="password" value="" placeholder="Mot de passe" [(ngModel)]="model.password" required pattern="password">
           </div>
           <div class="btnCenter">
               <input class="button special small" type="submit" value="Bienvenue">
@@ -27,15 +27,5 @@
     </div>
 </section>
 <a [routerLink]="['/addCat']" href="" class="button alt">Connexion</a>
-<!-- <div *ngIf="user">
 
-   <h2>{{ user.firstName }} Details</h2>
-   <div><span>id: </span>{{user.id}}</div>
 
-       <div>
-         <label>name:
-           <input [(ngModel)]="user.firstName" placeholder="name"/>
-         </label>
-       </div>
- </div>
-   -->
