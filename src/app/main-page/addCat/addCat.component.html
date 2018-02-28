@@ -11,26 +11,26 @@
     <header class="align-center">
       <h1>Ajouter votre chat</h1>
     </header>
-    <form  action="#" >
+    <form   action="#" (ngSubmit)="onSubmit()" #signInForm="ngForm" novalidate >
       <div class="row uniform">
         <div class="myInput 6u 12u$(xsmall)">
-          <input type="text" name="name" id="name" value="" placeholder="Nom">
+          <input type="text" name="name" id="name" value="" [(ngModel)]="cat.name" placeholder="Nom">
         </div>
         <div class="myInput 6u 12u$(xsmall)">
-          <input type="text" name="race" id="race" value="" placeholder="Race">
+          <input type="text" name="race" id="race" value="" [(ngModel)]="cat.name" placeholder="Race">
         </div>
         <div class="6u 12u$(xsmall)">
-          <select name="Sex" id="category">
+          <select name="Sex" id="category" [(ngModel)]="cat.gender">
             <option value="">- Sexe -</option>
             <option value="1">Mâle</option>
             <option value="2">Femelle</option>
           </select>
         </div>
         <div class="myInput 6u 12u$(xsmall)">
-          <input type="text" name="age" id="age" value="" placeholder="Age">
+          <input type="text" name="age" id="age" value="" [(ngModel)]="cat.age" placeholder="Age">
         </div>
         <div class="12u$ description">
-          <textarea name="description" id="description" placeholder="Description" rows="6"></textarea>
+          <textarea name="description" id="description" placeholder="Description" [(ngModel)]="cat.description" rows="6"></textarea>
         </div>
         <div class="myInput 6u 12u$(xsmall)">
           <input type="file" name="picture" id="picture" value="" placeholder="picture">

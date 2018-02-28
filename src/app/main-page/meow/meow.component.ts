@@ -19,6 +19,8 @@ export class MeowComponent implements OnInit, AfterViewChecked{
   cats: Cat[];
   catsNotMeow: Cat[];
   miaous: Miaou[];
+  catMeow: Cat;
+  catChoose: Cat;
 
   constructor(
     private route : ActivatedRoute,
@@ -34,26 +36,39 @@ export class MeowComponent implements OnInit, AfterViewChecked{
 
   }
 
-  ngAfterViewChecked() {
+  ngAfterViewChecked(){
     this.getCats()
   }
 
   getCats(): void {
-    const idUser = 1;
-    for(let cat of this.cats)
-    {
-      if(cat.idUser == idUser)
+    const idUser = +localStorage.getItem('currentUser');
+    while(this.cats.length == 0){}
+      for(let cat of this.cats)
       {
-        this.cats = this.cats.filter(c => c !== cat );
+        if(cat.idUser !== idUser)
+        {
+          this.cats = this.cats.filter(c => c !== cat );
+        }
       }
-    }
   }
 
-  getCatsNoMeow(): void {
+  getCatsNoMeow(cat: Cat): void {
+    this.catChoose = cat;
     this.catService.getCats()
       .subscribe(catsNotMeow => this.catsNotMeow = catsNotMeow);
     this.miaouService.getMiaous()
       .subscribe(miaous => this.miaous = miaous);
+    while(this.catsNotMeow.length == 0){}
+    this.catsNotMeow = this.catsNotMeow.filter(c => c !== cat);
+    this.catMeow = this.catsNotMeow[Math.floor(Math.random() * 3) + 0  ];
+  }
+
+  yes(catY: Cat): void {
+    this.getCatsNoMeow(this.catChoose);
+  }
+
+  no(catN: Cat): void {
+    this.getCatsNoMeow(this.catChoose);
   }
 
   delete(cat: Cat): void {
