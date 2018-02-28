@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit{
     this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = '/addCat';
+    this.returnUrl = '/meow';
   }
 
 
