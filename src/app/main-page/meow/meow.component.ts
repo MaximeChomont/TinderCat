@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import {Component, Input, OnInit, OnDestroy, AfterViewChecked} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cat } from '../../model/cat';
 import { CatService } from '../../service/model-service/cat.service';
@@ -6,6 +6,7 @@ import { Miaou } from '../../model/miaou';
 import { MiaouService } from '../../service/model-service/miaou.service';
 import {forEach} from '@angular/router/src/utils/collection';
 import {AlertService} from '../../service/alert.service';
+import {AuthenticationService} from "../../service/authentification.service";
 
 @Component({
   moduleId: module.id,
@@ -14,7 +15,7 @@ import {AlertService} from '../../service/alert.service';
   styleUrls: ['./meow.component.css']
 })
 
-export class MeowComponent implements OnInit{
+export class MeowComponent implements OnInit, AfterViewChecked{
   cats: Cat[];
   catsNotMeow: Cat[];
   miaous: Miaou[];
@@ -24,11 +25,16 @@ export class MeowComponent implements OnInit{
     private router: Router,
     private miaouService: MiaouService,
     private alertService: AlertService,
+    private authenticationService: AuthenticationService,
     private catService: CatService) {
       catService.getCats().subscribe(cats => this.cats = cats);
   }
 
   ngOnInit() {
+
+  }
+
+  ngAfterViewChecked() {
     this.getCats()
   }
 
@@ -36,7 +42,6 @@ export class MeowComponent implements OnInit{
     const idUser = 1;
     for(let cat of this.cats)
     {
-      this.alertService.success("Vous êtes connecté");
       if(cat.idUser == idUser)
       {
         this.cats = this.cats.filter(c => c !== cat );
@@ -54,5 +59,12 @@ export class MeowComponent implements OnInit{
   delete(cat: Cat): void {
     this.cats = this.cats.filter(c => c !== cat);
     this.catService.deleteCat(cat).subscribe();
+  }
+
+  logout() {
+    // reset login status
+    this.authenticationService.logout();
+    let route = ['/home'];
+    this.router.navigate(route);
   }
 }
