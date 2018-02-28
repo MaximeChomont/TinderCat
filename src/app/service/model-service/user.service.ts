@@ -1,20 +1,21 @@
 /**
  * Created by mchomont on 10/01/2018.
  */
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { catchError, map, tap } from 'rxjs/operators';
+import {Observable} from 'rxjs/Observable';
+import {of} from 'rxjs/observable/of';
+import {catchError, map, tap} from 'rxjs/operators';
 
-import { User } from '../../model/user';
-import { MessageService } from './message.service';
-import {Configuration} from "../../app.constants";
-import {AlertService} from "../alert.service";
+import {User} from '../../model/user';
+import {MessageService} from './message.service';
+import {Configuration} from '../../app.constants';
+import {AlertService} from '../alert.service';
+import {Cat} from '../../model/cat';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable()
@@ -22,16 +23,15 @@ export class UserService {
 
   private userUrl;  // URL to web api
 
-  constructor(
-    private http: HttpClient,
-    private messageService: MessageService,
-    private configuration: Configuration,
-    private alertService: AlertService) {
-    this.userUrl = this.configuration.ServerWithApiUrl+"users";
+  constructor(private http: HttpClient,
+              private messageService: MessageService,
+              private configuration: Configuration,
+              private alertService: AlertService) {
+    this.userUrl = this.configuration.ServerWithApiUrl + 'users';
   }
 
   /** GET heroes from the server */
-  getUsers (): Observable<User[]> {
+  getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl)
       .pipe(
         tap(users => this.log(`fetched users`)),
@@ -75,27 +75,29 @@ export class UserService {
   }
 
   //////// Save methods //////////
-
   /** POST: add a new user to the server */
-  addUser (user: User): Observable<User> {
-    this.alertService.success(`Fonction d'ajout ${user.firstName}`);
-    return this.http.post<User>(this.userUrl,{
-      name: user.name,
-      firstName: user.firstName,
-      age: user.age,
-      address: user.address,
-      postalCode: user.postalCode,
-      city: user.city,
-      password: user.password,
-      mail: user.mail
-    }, httpOptions).pipe(
-      tap((user: User) => this.alertService.success(`added user w/ id=${user.id}`)),
+  addUser(user: User): Observable<User> {
+    let body = new URLSearchParams();
+    body.set('name', user.name);
+    body.set('firstName', user.firstName);
+    body.set('age', user.age.toString());
+    body.set('address', user.address);
+    body.set('postalCode', user.postalCode);
+    body.set('city', user.city);
+    body.set('password', user.password);
+    body.set('mail', user.mail);
+
+    let options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    };
+    return this.http.post<User>(this.userUrl, body.toString(), options).pipe(
+      tap((user: User) => this.alertService.success(`added user w/ id=${user.name}`)),
       catchError(this.handleError<User>('addUser'))
     );
   }
 
   /** DELETE: delete the user from the server */
-  deleteUser (user: User | number): Observable<User> {
+  deleteUser(user: User | number): Observable<User> {
     const id = typeof user === 'number' ? user : user.id;
     const url = `${this.userUrl}/${id}`;
 
@@ -106,7 +108,7 @@ export class UserService {
   }
 
   /** PUT: update the user on the server */
-  updateUser (user: User): Observable<any> {
+  updateUser(user: User): Observable<any> {
     return this.http.put(this.userUrl, user, httpOptions).pipe(
       tap(_ => this.log(`updated hero id=${user.id}`)),
       catchError(this.handleError<any>('updateUser'))
@@ -119,7 +121,7 @@ export class UserService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
 
