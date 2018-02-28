@@ -1,0 +1,25 @@
+<!-- Header -->
+<header id="header">
+  <img src="../../assets/tindercat.png"/>
+  <nav class="right">
+    <a [routerLink]="['/home']" href="" class="button alt">Déconnexion</a>
+  </nav>
+</header>
+
+<div class="row uniform">
+  <div class="4u 12u$(xsmall)">
+    <ul class="cats">
+      <li *ngFor="let cat of cats">
+        <a ng-click="$getCatsNoMeow">
+          {{cat.name}}
+        </a>
+        <button class="delete" title="delete cat"
+                (click)="delete(cat)">x</button>
+      </li>
+    </ul>
+  </div>
+  <div class="8u 12u$(xsmall)">
+
+
+  </div>
+</div>

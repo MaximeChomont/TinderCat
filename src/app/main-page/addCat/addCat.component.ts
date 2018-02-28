@@ -17,9 +17,4 @@ export class AddCatComponent implements OnInit{
 
   ngOnInit() {
   }
-
-  private goToHome(){
-    let route = ['/home'];
-    this.router.navigate(route);
-  }
 }
